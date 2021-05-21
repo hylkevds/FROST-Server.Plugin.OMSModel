@@ -71,7 +71,7 @@ public class PluginOMSModel implements PluginRootDocument, PluginModel, ConfigDe
     private List<DefModel> modelDefinitions = new ArrayList<>();
 
     public PluginOMSModel() {
-        LOGGER.info("Creating new Core Model Plugin.");
+        LOGGER.info("Creating new Observations, Measurements & Samples Model Plugin.");
     }
 
     @Override
