@@ -147,30 +147,6 @@
             }
           ],
           "annotations": []
-        },
-        {
-          "name": "UltimateFeaturesOfInterest",
-          "entitySet": true,
-          "entityType": "FeatureOfInterest",
-          "required": false,
-          "inverse": {
-            "name": "ProximateFeaturesOfInterest",
-            "entitySet": true,
-            "required": false,
-            "annotations": []
-          },
-          "handlers": [
-            {
-              "@class": "de.fraunhofer.iosb.ilt.frostserver.persistence.pgjooq.utils.fieldmapper.FieldMapperManyToMany",
-              "field": "id",
-              "linkTable": "observation_collection",
-              "linkOurField": "pfoi",
-              "linkOtherField": "ufoi",
-              "otherTable": "foi_sample",
-              "otherField": "id"
-            }
-          ],
-          "annotations": []
         }
       ],
       "annotations": []

@@ -8,6 +8,20 @@
       "table": "deployment",
       "entityProperties": [
         {
+          "name": "id",
+          "aliases": [
+            "@iot.id"
+          ],
+          "type": "Id",
+          "handlers": [
+            {
+              "@class": "de.fraunhofer.iosb.ilt.frostserver.persistence.pgjooq.utils.fieldmapper.FieldMapperId",
+              "field": "id"
+            }
+          ],
+          "annotations": []
+        },
+        {
           "name": "description",
           "type": "Edm.String",
           "handlers": [
@@ -25,20 +39,6 @@
             {
               "@class": "de.fraunhofer.iosb.ilt.frostserver.persistence.pgjooq.utils.fieldmapper.FieldMapperTimeInstant",
               "field": "end_time"
-            }
-          ],
-          "annotations": []
-        },
-        {
-          "name": "id",
-          "aliases": [
-            "@iot.id"
-          ],
-          "type": "Id",
-          "handlers": [
-            {
-              "@class": "de.fraunhofer.iosb.ilt.frostserver.persistence.pgjooq.utils.fieldmapper.FieldMapperId",
-              "field": "id"
             }
           ],
           "annotations": []

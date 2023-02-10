@@ -23,6 +23,8 @@ services:
       - persistence_db_password=ChangeMe
       - persistence_autoUpdateDatabase=true
       - plugins_coreModel_enable=false
+      - plugins_actuation_enable=false
+      - plugins_multiDatastream_enable=false
       - plugins_odata_enable=true
       - plugins_openApi_enable=true
 
