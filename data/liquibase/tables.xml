@@ -1,0 +1,550 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="generated" id="1676038931598-1">
+        <createTable tableName="deployment">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="deployment_pk"/>
+            </column>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="description" type="VARCHAR(100)"/>
+            <column name="metadata" type="VARCHAR(100)"/>
+            <column name="link" type="VARCHAR(100)"/>
+            <column name="reason" type="VARCHAR(100)"/>
+            <column name="start_time" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="end_time" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="observer" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="host" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-2">
+        <createTable tableName="obs_procedure">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="obs_procedure_pk"/>
+            </column>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="description" type="VARCHAR(100)"/>
+            <column name="metadata" type="VARCHAR(100)"/>
+            <column name="link" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-3">
+        <createTable tableName="obs_prop">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="obs_prop_pk"/>
+            </column>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="description" type="VARCHAR(100)"/>
+            <column name="metadata" type="VARCHAR(100)"/>
+            <column name="link" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-4">
+        <createTable tableName="observation_collection">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="observation_collection_pk"/>
+            </column>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="description" type="VARCHAR(100)"/>
+            <column name="metadata" type="VARCHAR(100)"/>
+            <column name="type" type="VARCHAR(100)"/>
+            <column name="observing_procedure" type="INTEGER"/>
+            <column name="observed_property" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="observer" type="INTEGER"/>
+            <column name="ufoi" type="INTEGER"/>
+            <column name="pfoi" type="INTEGER"/>
+            <column name="result" type="INTEGER"/>
+            <column name="host" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-5">
+        <createTable tableName="observation">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="observation_pk"/>
+            </column>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="description" type="VARCHAR(100)"/>
+            <column name="metadata" type="VARCHAR(100)"/>
+            <column name="phenomenon_time_start" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="phenomenon_time_end" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="result_time" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="valid_time_start" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="valid_time_end" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="result_quality" type="JSON"/>
+            <column name="obs_prop" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="obs_procedure" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="foi" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ufoi" type="INTEGER"/>
+            <column name="pfoi" type="INTEGER"/>
+            <column name="parameter" type="JSONB"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-6">
+        <createTable tableName="preparation_procedure">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="preparation_procedure_pk"/>
+            </column>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="description" type="VARCHAR(100)"/>
+            <column name="metadata" type="VARCHAR(100)"/>
+            <column name="link" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-7">
+        <createTable tableName="preparation_step">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="preparation_step_pk"/>
+            </column>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="description" type="VARCHAR(100)"/>
+            <column name="metadata" type="VARCHAR(100)"/>
+            <column name="link" type="VARCHAR(100)"/>
+            <column name="time" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="sample" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-8">
+        <createTable tableName="result_val">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="result_val_pk"/>
+            </column>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="description" type="VARCHAR(100)"/>
+            <column name="metadata" type="VARCHAR(100)"/>
+            <column name="result_type" type="SMALLINT"/>
+            <column name="result_number" type="FLOAT8"/>
+            <column name="result_string" type="TEXT"/>
+            <column name="result_json" type="TEXT"/>
+            <column name="result_boolean" type="BOOLEAN"/>
+            <column name="obs" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-9">
+        <createTable tableName="sample_collection">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sample_collection_pk"/>
+            </column>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="description" type="VARCHAR(100)"/>
+            <column name="metadata" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-10">
+        <createTable tableName="sampler">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sampler_pk"/>
+            </column>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="description" type="VARCHAR(100)"/>
+            <column name="metadata" type="VARCHAR(100)"/>
+            <column name="sampler_type" type="VARCHAR(100)"/>
+            <column name="link" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-11">
+        <createTable tableName="sampling_procedure">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sampling_procedure_pk"/>
+            </column>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="description" type="VARCHAR(100)"/>
+            <column name="metadata" type="VARCHAR(100)"/>
+            <column name="link" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-15">
+        <createTable tableName="ass_observation_collection_observation">
+            <column name="observation_collection_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="observation_collection_observation_pk"/>
+            </column>
+            <column name="observation_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="observation_collection_observation_pk"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-16">
+        <createTable tableName="ass_observation_deployment">
+            <column name="observation_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="observation_deployment_pk"/>
+            </column>
+            <column name="deployment_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="observation_deployment_pk"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-17">
+        <createTable tableName="ass_observation_host">
+            <column name="observation_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="observation_host_pk"/>
+            </column>
+            <column name="host_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="observation_host_pk"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-18">
+        <createTable tableName="ass_observation_observer">
+            <column name="observation_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="observation_observer_pk"/>
+            </column>
+            <column name="observer_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="observation_observer_pk"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-19">
+        <createTable tableName="ass_preparation_procedure_preparation_step">
+            <column name="preparation_procedure_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="preparation_procedure_preparation_step_pk"/>
+            </column>
+            <column name="preparation_step_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="preparation_procedure_preparation_step_pk"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-20">
+        <createTable tableName="ass_related_observation">
+            <column name="observation_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="related_observation_pkey"/>
+            </column>
+            <column name="related_observation_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="related_observation_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-21">
+        <createTable tableName="ass_related_observation_collection">
+            <column name="observation_collection_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="related_observation_collection_pkey"/>
+            </column>
+            <column name="related_observation_collection_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="related_observation_collection_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-22">
+        <createTable tableName="ass_related_sample">
+            <column name="sample_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="related_sample_pkey"/>
+            </column>
+            <column name="related_sample_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="related_sample_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-23">
+        <createTable tableName="ass_related_sample_collection">
+            <column name="sample_collection_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="related_sample_collection_pkey"/>
+            </column>
+            <column name="related_sample_collection_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="related_sample_collection_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-24">
+        <createTable tableName="ass_related_sampling">
+            <column name="sampling_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="related_sampling_pkey"/>
+            </column>
+            <column name="related_sampling_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="related_sampling_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-25">
+        <createTable tableName="ass_sample_collection_sample">
+            <column name="sample_collection_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sample_collection_sample_pk"/>
+            </column>
+            <column name="sample_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sample_collection_sample_pk"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-26">
+        <createTable tableName="ass_sample_sampling">
+            <column name="sample_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sample_sampling_pk"/>
+            </column>
+            <column name="sampling_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sample_sampling_pk"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-27">
+        <createTable tableName="ass_sampler_sampling">
+            <column name="sampler_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sampler_sampling_pk"/>
+            </column>
+            <column name="sampling_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sampler_sampling_pk"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-28">
+        <createTable tableName="ass_sampling_procedure_sampler">
+            <column name="sampling_procedure_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sampling_procedure_sampler_pk"/>
+            </column>
+            <column name="sampler_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sampling_procedure_sampler_pk"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-29">
+        <createTable tableName="ass_sampling_procedure_sampling">
+            <column name="sampling_procedure_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sampling_procedure_sampling_pk"/>
+            </column>
+            <column name="sampling_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sampling_procedure_sampling_pk"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-30">
+        <createTable tableName="ass_sampling_sample">
+            <column name="sampling_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sample_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-31">
+        <createTable tableName="foi_sample">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="foi_pk"/>
+            </column>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="description" type="VARCHAR(100)"/>
+            <column name="metadata" type="VARCHAR(100)"/>
+            <column name="link" type="VARCHAR(100)"/>
+            <column name="horiz_accuracy" type="VARCHAR(100)"/>
+            <column name="vert_accuracy" type="VARCHAR(100)"/>
+            <column name="sample_type" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="shape" type="GEOMETRY"/>
+            <column name="parameter" type="JSONB"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-32">
+        <createTable tableName="host">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="host_pk"/>
+            </column>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="description" type="VARCHAR(100)"/>
+            <column name="metadata" type="VARCHAR(100)"/>
+            <column name="link" type="VARCHAR(100)"/>
+            <column name="location" type="GEOMETRY"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-33">
+        <createTable tableName="observation_type">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="observation_type_pk"/>
+            </column>
+            <column name="observation_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="observation_type" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-34">
+        <createTable tableName="observer">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="observer_pk"/>
+            </column>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="description" type="VARCHAR(100)"/>
+            <column name="metadata" type="VARCHAR(100)"/>
+            <column name="link" type="VARCHAR(100)"/>
+            <column name="location" type="GEOMETRY"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-35">
+        <createTable tableName="sampling">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sampling_pk"/>
+            </column>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="description" type="VARCHAR(100)"/>
+            <column name="metadata" type="VARCHAR(100)"/>
+            <column name="sampling_location" type="GEOMETRY"/>
+            <column name="time_start" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="time_end" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="link" type="VARCHAR(100)"/>
+            <column name="parameter" type="JSONB"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-36">
+        <addPrimaryKey columnNames="sample_id, sampling_id" constraintName="sampling_sample_pk" tableName="ass_sampling_sample"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-37">
+        <addForeignKeyConstraint baseColumnNames="host" baseTableName="deployment" constraintName="deployment_host_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="host" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-38">
+        <addForeignKeyConstraint baseColumnNames="observer" baseTableName="deployment" constraintName="deployment_observer_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="observer" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-39">
+        <addForeignKeyConstraint baseColumnNames="host" baseTableName="observation_collection" constraintName="observation_collection_host_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="host" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-40">
+        <addForeignKeyConstraint baseColumnNames="observation_collection_id" baseTableName="ass_observation_collection_observation" constraintName="observation_collection_observation_observation_collection_id_fk" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="observation_collection" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-41">
+        <addForeignKeyConstraint baseColumnNames="observation_id" baseTableName="ass_observation_collection_observation" constraintName="observation_collection_observation_observation_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="observation" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-42">
+        <addForeignKeyConstraint baseColumnNames="observed_property" baseTableName="observation_collection" constraintName="observation_collection_observed_property_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="obs_prop" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-43">
+        <addForeignKeyConstraint baseColumnNames="observer" baseTableName="observation_collection" constraintName="observation_collection_observer_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="observer" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-44">
+        <addForeignKeyConstraint baseColumnNames="observing_procedure" baseTableName="observation_collection" constraintName="observation_collection_observing_procedure_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="obs_procedure" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-45">
+        <addForeignKeyConstraint baseColumnNames="pfoi" baseTableName="observation_collection" constraintName="observation_collection_pfoi_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="foi_sample" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-46">
+        <addForeignKeyConstraint baseColumnNames="result" baseTableName="observation_collection" constraintName="observation_collection_result_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="result_val" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-47">
+        <addForeignKeyConstraint baseColumnNames="ufoi" baseTableName="observation_collection" constraintName="observation_collection_ufoi_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="foi_sample" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-48">
+        <addForeignKeyConstraint baseColumnNames="deployment_id" baseTableName="ass_observation_deployment" constraintName="observation_deployment_deployment_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="deployment" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-49">
+        <addForeignKeyConstraint baseColumnNames="observation_id" baseTableName="ass_observation_deployment" constraintName="observation_deployment_observation_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="observation" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-50">
+        <addForeignKeyConstraint baseColumnNames="observation_id" baseTableName="observation_type" constraintName="observation_deployment_observation_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="observation" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-51">
+        <addForeignKeyConstraint baseColumnNames="foi" baseTableName="observation" constraintName="observation_foi_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="foi_sample" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-52">
+        <addForeignKeyConstraint baseColumnNames="host_id" baseTableName="ass_observation_host" constraintName="observation_host_host_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="host" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-53">
+        <addForeignKeyConstraint baseColumnNames="observation_id" baseTableName="ass_observation_host" constraintName="observation_host_observation_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="observation" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-54">
+        <addForeignKeyConstraint baseColumnNames="obs_procedure" baseTableName="observation" constraintName="observation_obs_procedure_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="obs_procedure" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-55">
+        <addForeignKeyConstraint baseColumnNames="obs_prop" baseTableName="observation" constraintName="observation_obs_prop_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="obs_prop" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-56">
+        <addForeignKeyConstraint baseColumnNames="observation_id" baseTableName="ass_observation_observer" constraintName="observation_observer_observation_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="observation" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-57">
+        <addForeignKeyConstraint baseColumnNames="observer_id" baseTableName="ass_observation_observer" constraintName="observation_observer_observer_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="observer" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-58">
+        <addForeignKeyConstraint baseColumnNames="pfoi" baseTableName="observation" constraintName="observation_pfoi_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="foi_sample" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-59">
+        <addForeignKeyConstraint baseColumnNames="ufoi" baseTableName="observation" constraintName="observation_ufoi_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="foi_sample" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-60">
+        <addForeignKeyConstraint baseColumnNames="preparation_procedure_id" baseTableName="ass_preparation_procedure_preparation_step" constraintName="preparation_procedure_preparation_step_preparation_procedure_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="preparation_procedure" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-61">
+        <addForeignKeyConstraint baseColumnNames="preparation_step_id" baseTableName="ass_preparation_procedure_preparation_step" constraintName="preparation_procedure_preparation_step_preparation_step_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="preparation_step" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-62">
+        <addForeignKeyConstraint baseColumnNames="sample" baseTableName="preparation_step" constraintName="preparation_step_sample_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="foi_sample" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-63">
+        <addForeignKeyConstraint baseColumnNames="observation_collection_id" baseTableName="ass_related_observation_collection" constraintName="related_observation_observation_collection_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="observation_collection" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-64">
+        <addForeignKeyConstraint baseColumnNames="observation_id" baseTableName="ass_related_observation" constraintName="related_observation_observation_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="observation" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-65">
+        <addForeignKeyConstraint baseColumnNames="related_observation_collection_id" baseTableName="ass_related_observation_collection" constraintName="related_observation_related_observation_collection_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="observation_collection" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-66">
+        <addForeignKeyConstraint baseColumnNames="related_observation_id" baseTableName="ass_related_observation" constraintName="related_observation_related_observation_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="observation" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-67">
+        <addForeignKeyConstraint baseColumnNames="related_sample_collection_id" baseTableName="ass_related_sample_collection" constraintName="related_sample_related_sample_collection_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="sample_collection" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-68">
+        <addForeignKeyConstraint baseColumnNames="related_sample_id" baseTableName="ass_related_sample" constraintName="related_sample_related_sampling_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="foi_sample" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-69">
+        <addForeignKeyConstraint baseColumnNames="sample_collection_id" baseTableName="ass_related_sample_collection" constraintName="related_sample_sample_collection_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="sample_collection" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-70">
+        <addForeignKeyConstraint baseColumnNames="sample_id" baseTableName="ass_related_sample" constraintName="related_sample_sampling_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="foi_sample" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-71">
+        <addForeignKeyConstraint baseColumnNames="related_sampling_id" baseTableName="ass_related_sampling" constraintName="related_sampling_related_sampling_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="sampling" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-72">
+        <addForeignKeyConstraint baseColumnNames="sampling_id" baseTableName="ass_related_sampling" constraintName="related_sampling_sampling_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="sampling" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-73">
+        <addForeignKeyConstraint baseColumnNames="obs" baseTableName="result_val" constraintName="result_val_obs_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="observation" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-74">
+        <addForeignKeyConstraint baseColumnNames="sample_collection_id" baseTableName="ass_sample_collection_sample" constraintName="sample_collection_sample_sample_collection_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="sample_collection" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-75">
+        <addForeignKeyConstraint baseColumnNames="sample_id" baseTableName="ass_sample_collection_sample" constraintName="sample_collection_sample_sample_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="foi_sample" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-76">
+        <addForeignKeyConstraint baseColumnNames="sample_id" baseTableName="ass_sample_sampling" constraintName="sample_sampling_sample_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="foi_sample" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-77">
+        <addForeignKeyConstraint baseColumnNames="sampling_id" baseTableName="ass_sample_sampling" constraintName="sample_sampling_sampling_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="sampling" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-78">
+        <addForeignKeyConstraint baseColumnNames="sampler_id" baseTableName="ass_sampler_sampling" constraintName="sampler_sampling_sample_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="sampler" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-79">
+        <addForeignKeyConstraint baseColumnNames="sampling_id" baseTableName="ass_sampler_sampling" constraintName="sampler_sampling_sampling_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="sampling" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-80">
+        <addForeignKeyConstraint baseColumnNames="sampler_id" baseTableName="ass_sampling_procedure_sampler" constraintName="sampling_procedure_sampler_sampler_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="sampler" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-81">
+        <addForeignKeyConstraint baseColumnNames="sampling_procedure_id" baseTableName="ass_sampling_procedure_sampler" constraintName="sampling_procedure_sampler_sampling_procedure_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="sampling_procedure" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-82">
+        <addForeignKeyConstraint baseColumnNames="sampling_id" baseTableName="ass_sampling_procedure_sampling" constraintName="sampling_procedure_sampling_sampling_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="sampling" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-83">
+        <addForeignKeyConstraint baseColumnNames="sampling_procedure_id" baseTableName="ass_sampling_procedure_sampling" constraintName="sampling_procedure_sampling_sampling_procedure_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="sampling_procedure" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-84">
+        <addForeignKeyConstraint baseColumnNames="sample_id" baseTableName="ass_sampling_sample" constraintName="sampling_sample_sample_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="foi_sample" validate="true"/>
+    </changeSet>
+    <changeSet author="generated" id="1676038931598-85">
+        <addForeignKeyConstraint baseColumnNames="sampling_id" baseTableName="ass_sampling_sample" constraintName="sampling_sample_sampling_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="sampling" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

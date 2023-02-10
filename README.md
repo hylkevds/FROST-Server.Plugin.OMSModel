@@ -3,5 +3,9 @@ A FROST-Server Plugin implementing a prototype Observations, Measurements and Sa
 
 ## Settings
 
-* **plugins.OMSModel.enable:**  
-  Toggle indicating the OMSModel plugin should be enabled. Default: `false`.
+See the scripts/docker-compose-separated.yaml for examples.
+
+## Data Model
+
+![Data Model](../STA_OMS.png)
+
