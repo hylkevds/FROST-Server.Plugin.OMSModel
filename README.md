@@ -3,9 +3,9 @@ A FROST-Server Plugin implementing a prototype Observations, Measurements and Sa
 
 ## Settings
 
-See the scripts/docker-compose-separated.yaml for examples.
+See the [scripts/docker-compose-separated.yaml](scripts/docker-compose-separated.yaml) for examples.
 
 ## Data Model
 
-![Data Model](../STA_OMS.png)
+![Data Model](STA_OMS.png)
 
