@@ -125,16 +125,11 @@
       ],
       "navigationProperties": [
         {
-          "name": "RelatedSampleSources",
+          "name": "RelatedSamples",
           "entitySet": true,
           "entityType": "FeatureOfInterest",
           "required": false,
-          "inverse": {
-            "name": "RelatedSamples",
-            "entitySet": true,
-            "required": false,
-            "annotations": []
-          },
+          "symmetrical": true,
           "handlers": [
             {
               "@class": "de.fraunhofer.iosb.ilt.frostserver.persistence.pgjooq.utils.fieldmapper.FieldMapperManyToMany",
